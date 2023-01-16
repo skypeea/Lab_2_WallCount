@@ -18,19 +18,21 @@ namespace Lab_2_WallCount
             UIApplication uiapp = commandData.Application;
             UIDocument uidoc = uiapp.ActiveUIDocument;
             Document doc = uidoc.Document;
-            var levelList = new FilteredElementCollector(doc)
+            
+            var levelList = new FilteredElementCollector(doc) //список уровней в проекте
                 .OfClass(typeof(Level))
                 .Cast<Level>()
                 .ToList();
 
-
-            var wallList = new FilteredElementCollector(doc)
+            var wallList = new FilteredElementCollector(doc) // список стен в проекте
                 .OfClass(typeof(Wall))
                 .Cast<Wall>()
                 .ToList();
-            int[] countByLevels = new int[levelList.Count()];
+
+            int[] countByLevels = new int[levelList.Count()]; //Массив для хранения количества стен по этажам
             int i = 0;
-            string info = "";
+            string info = ""; //для вывода информации
+
             foreach (Level l in levelList)
             {
                 foreach(Wall w in wallList)
